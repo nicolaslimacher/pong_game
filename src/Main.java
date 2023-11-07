@@ -29,7 +29,8 @@ public class Main {
             public void actionPerformed(ActionEvent e){
                 
                 game.repaint();
-
+                game.gameLogic();
+                
             }
         });
 

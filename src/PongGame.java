@@ -10,7 +10,7 @@ public class PongGame extends JPanel {
     public PongGame(){
         
         gameBall = new Ball(320, 220, 3, 3, 3, Color.YELLOW, 5);
-        
+
     }
 
     public void paintComponent(Graphics g){
@@ -25,4 +25,10 @@ public class PongGame extends JPanel {
         this.gameBall = gameBall;
     }
 
+    public void gameLogic(){
+
+        gameBall.bounceOffEdges(0, WINDOW_HEIGHT);
+        
+        gameBall.moveBall();
+    }
 }
