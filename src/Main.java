@@ -1,10 +1,15 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 import javax.swing.WindowConstants;
 
 //basic hello world
 public class Main {
 
     static JFrame f = new JFrame("Pong");
+
+
     public static void main(String[] args) {
         
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -17,5 +22,17 @@ public class Main {
 
         //show that window
         f.setVisible(true);
+
+        Timer timer = new Timer(33, new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+                game.repaint();
+
+            }
+        });
+
+        timer.start();
     }
 }
