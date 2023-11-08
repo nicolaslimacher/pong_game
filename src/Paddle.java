@@ -29,12 +29,14 @@ public class Paddle {
         //find the location of the center of the paddle
         int centerY = y + height / 2;
 
-        if (centerY > moveToY){
+        if (Math.abs(centerY - moveToY) > speed){
+                    if (centerY > moveToY){
             y -= speed;
         }
 
-        if (centerY < moveToY){
-            y += speed;
+            if (centerY < moveToY){
+                y += speed;
+            }
         }
     }
 

@@ -44,11 +44,10 @@ public class PongGame extends JPanel implements MouseMotionListener{
     public void gameLogic(){
 
         gameBall.bounceOffEdges(0, WINDOW_HEIGHT);
-
         gameBall.moveBall();
 
-        
-
+        userPaddle.moveTowards(userMouseY);
+        pcPaddle.moveTowards(gameBall.getY());
     }
 
     @Override

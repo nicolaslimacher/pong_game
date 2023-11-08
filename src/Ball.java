@@ -58,4 +58,9 @@ public class Ball {
         cx *= -1;
 
     }
+
+    public int getY(){
+        return y;
+    }
+
 }
