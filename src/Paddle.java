@@ -24,4 +24,18 @@ public class Paddle {
 
     }
 
+    public void moveTowards(int moveToY){
+
+        //find the location of the center of the paddle
+        int centerY = y + height / 2;
+
+        if (centerY > moveToY){
+            y -= speed;
+        }
+
+        if (centerY < moveToY){
+            y += speed;
+        }
+    }
+
 }
