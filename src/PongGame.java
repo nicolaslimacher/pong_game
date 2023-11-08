@@ -9,7 +9,7 @@ public class PongGame extends JPanel implements MouseMotionListener{
 
     private Ball gameBall;
     private Paddle userPaddle, pcPaddle;
-    private int userMouseY;
+    private int userMouseY, userScore, pcScore, bounceCount;
 
     public PongGame(){
         
@@ -17,6 +17,7 @@ public class PongGame extends JPanel implements MouseMotionListener{
 
         userPaddle = new Paddle(10, 200, 75, 3, Color.BLUE);
         pcPaddle = new Paddle(610, 200, 75, 3, Color.RED);
+        bounceCount = 0;
 
         userMouseY = 0;
         addMouseMotionListener(this);
@@ -35,6 +36,10 @@ public class PongGame extends JPanel implements MouseMotionListener{
         userPaddle.paint(g);
         pcPaddle.paint(g);
 
+        //update the score
+        g.setColor(Color.WHITE);
+        g.drawString("SCORE:  User[" + userScore + "] -- PC [" + pcScore + "]", 250, 20);
+
     }
 
     public void setGameBall(Ball gameBall) {
@@ -48,6 +53,32 @@ public class PongGame extends JPanel implements MouseMotionListener{
 
         userPaddle.moveTowards(userMouseY);
         pcPaddle.moveTowards(gameBall.getY());
+
+        if(userPaddle.checkCollision(gameBall)){
+            gameBall.reverseX();
+            bounceCount++;
+        }
+
+        if(pcPaddle.checkCollision(gameBall)){
+            gameBall.reverseX();
+            bounceCount++;
+        }
+
+        if(gameBall.getX() < 0 ){
+            pcScore++;
+            reset();
+        }
+        else if(gameBall.getX() > WINDOW_WIDTH){
+            userScore++;
+            reset();
+        }
+    }
+
+    public void reset  (){
+        gameBall = new Ball(320, 220, 3, 3, 3, Color.YELLOW, 5);
+        userPaddle = new Paddle(10, 200, 75, 3, Color.BLUE);
+        pcPaddle = new Paddle(610, 200, 75, 3, Color.RED);
+        bounceCount = 0;
     }
 
     @Override

@@ -4,6 +4,8 @@ public class Ball {
     private int x, y, cx, cy, speed, size;
     private Color color;
 
+    static final int MAX_SPEED = 6;
+
     public Ball(int x, int y, int cx, int cy, int speed, Color color, int size){
 
         this.x=x;
@@ -37,14 +39,6 @@ public class Ball {
         if (y < top){
             reverseY();
         }
-
-        if (x < 0){
-            reverseX();
-        }
-
-        if (x > 640 - size){
-            reverseX();
-        }
     }
 
     private void reverseY() {
@@ -53,7 +47,7 @@ public class Ball {
 
     }
 
-    private void reverseX() {
+    public void reverseX() {
 
         cx *= -1;
 
@@ -61,6 +55,21 @@ public class Ball {
 
     public int getY(){
         return y;
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public void increaseSpeed(){
+
+        if (speed < MAX_SPEED){
+            speed++;
+        }
     }
 
 }

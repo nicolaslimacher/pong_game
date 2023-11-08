@@ -40,4 +40,24 @@ public class Paddle {
         }
     }
 
+    /*
+     * Checks if this paddle is colliding with a ball (b)
+     * @return true if colliding
+     */
+    public boolean checkCollision(Ball b){
+
+        int rightX = x + PADDLE_WIDTH;
+        
+        int bottomY = y + height;
+
+        if(b.getX() > (x-b.getSize()) && b.getX() < rightX){
+            //then we know it's horizontally between the paddle
+            if(b.getY() > y && b.getY() < bottomY){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
