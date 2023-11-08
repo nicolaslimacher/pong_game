@@ -70,6 +70,10 @@ public class Ball {
         if (speed < MAX_SPEED){
             speed++;
         }
+        //update cy and cx with the new speed
+        cx = (cx / Math.abs(cx)*speed);
+        cy = (cy / Math.abs(cy)*speed);
+        
     }
 
 }

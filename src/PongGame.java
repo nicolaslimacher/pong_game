@@ -39,7 +39,6 @@ public class PongGame extends JPanel implements MouseMotionListener{
         //update the score
         g.setColor(Color.WHITE);
         g.drawString("SCORE:  User[" + userScore + "] -- PC [" + pcScore + "]", 250, 20);
-
     }
 
     public void setGameBall(Ball gameBall) {
@@ -54,16 +53,21 @@ public class PongGame extends JPanel implements MouseMotionListener{
         userPaddle.moveTowards(userMouseY);
         pcPaddle.moveTowards(gameBall.getY());
 
-        if(userPaddle.checkCollision(gameBall)){
+        //check if ball collides with either paddle
+        if(userPaddle.checkCollision(gameBall) || pcPaddle.checkCollision(gameBall)){
             gameBall.reverseX();
             bounceCount++;
         }
 
-        if(pcPaddle.checkCollision(gameBall)){
-            gameBall.reverseX();
-            bounceCount++;
+        //increase difficulty over time
+        if (bounceCount == 5){
+            //reset counter
+            bounceCount = 0;
+            //increase speed
+            gameBall.increaseSpeed();
         }
 
+        //update score if ball crosses either screen side
         if(gameBall.getX() < 0 ){
             pcScore++;
             reset();
